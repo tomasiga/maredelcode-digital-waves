@@ -2,39 +2,60 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
+/* Maredelcode Design System - Mar del Plata + Code
+All colors MUST be HSL. Ocean-tech inspired palette.
 */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Brand Colors - Ocean Tech Palette */
+    --background: 210 20% 98%;
+    --foreground: 210 85% 6%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 210 85% 6%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 210 85% 6%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Deep Blue - Primary Brand Color */
+    --primary: 210 85% 6%;
+    --primary-foreground: 0 0% 98%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Electric Turquoise - Accent */  
+    --secondary: 178 68% 47%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Muted Ocean Tones */
+    --muted: 210 20% 96%;
+    --muted-foreground: 210 15% 55%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Turquoise Accent */
+    --accent: 178 68% 47%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 210 25% 90%;
+    --input: 210 25% 90%;
+    --ring: 178 68% 47%;
+
+    /* Custom Brand Variables */
+    --brand-deep-blue: 210 85% 6%;
+    --brand-turquoise: 178 68% 47%;
+    --brand-light-blue: 195 100% 95%;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(210 85% 6%), hsl(195 80% 15%));
+    --gradient-accent: linear-gradient(135deg, hsl(178 68% 47%), hsl(195 70% 55%));
+    --gradient-hero: linear-gradient(135deg, hsl(210 85% 6%) 0%, hsl(195 80% 15%) 50%, hsl(178 68% 47%) 100%);
+    --gradient-glass: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+    
+    /* Shadows */
+    --shadow-glass: 0 8px 32px rgba(31, 38, 135, 0.15);
+    --shadow-floating: 0 10px 40px rgba(0, 0, 0, 0.1);
+    --shadow-premium: 0 20px 60px rgba(31, 38, 135, 0.2);
 
     --radius: 0.5rem;
 
