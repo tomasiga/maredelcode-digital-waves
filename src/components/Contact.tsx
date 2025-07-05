@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -10,16 +11,44 @@ const Contact = () => {
     project: "",
     message: ""
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would integrate with your form service
-    toast({
-      title: "¡Mensaje enviado!",
-      description: "Te contactaremos dentro de las próximas 2 horas.",
-    });
-    setFormData({ name: "", email: "", phone: "", project: "", message: "" });
+    setIsSubmitting(true);
+
+    try {
+      const { error } = await supabase
+        .from('contacts')
+        .insert([{
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone || null,
+          project: formData.project || null,
+          message: formData.message || null
+        }]);
+
+      if (error) {
+        throw error;
+      }
+
+      toast({
+        title: "¡Mensaje enviado!",
+        description: "Te contactaremos dentro de las próximas 2 horas.",
+      });
+      
+      setFormData({ name: "", email: "", phone: "", project: "", message: "" });
+    } catch (error) {
+      console.error('Error saving contact form:', error);
+      toast({
+        title: "Error al enviar",
+        description: "Hubo un problema. Por favor intenta nuevamente.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -193,8 +222,8 @@ const Contact = () => {
                 />
               </div>
               
-              <Button type="submit" variant="hero" size="lg" className="w-full">
-                Enviar consulta gratuita
+              <Button type="submit" variant="hero" size="lg" className="w-full" disabled={isSubmitting}>
+                {isSubmitting ? "Enviando..." : "Enviar consulta gratuita"}
               </Button>
               
               <p className="text-xs text-white/60 text-center">
