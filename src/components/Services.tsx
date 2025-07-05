@@ -28,7 +28,7 @@ const Services = () => {
       description: "Integramos herramientas que automatizan procesos y potencian tu productividad con IA.",
       features: ["WhatsApp Business", "Formularios inteligentes", "CRM integrado", "Reportes automáticos"],
       icon: "⚡",
-      highlight: false
+      highlight: true
     }
   ];
 
